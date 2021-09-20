@@ -27,7 +27,7 @@ print("Warning! EVERYTHING IS CASE SENSITIVE.")
 
 
 
-file = open("users/root.txt", "a")
+file = open("root.txt", "a")
 devmode = False
 usernamefound = False
 passwordfound = False
@@ -90,15 +90,15 @@ def help():
 #Createuser (Creates user)
 def createuser():
     arg1 = input("Username: ")
-    if os.path.exists("users/"+arg1+".txt"):
+    if os.path.exists(arg1+".txt"):
         print(arg1+" already exists!")
         return
     else:
-        file = open("users/"+arg1+".txt", "a")
+        file = open(arg1+".txt", "a")
         file.close()
         time.sleep(0.3)
         arg2 = input("Enter password: ")
-        file = open("users/"+arg1+".txt", "w")
+        file = open(arg1+".txt", "w")
         file.write(arg2+"\n")
         time.sleep(0.5)
         cls()
@@ -109,11 +109,11 @@ def createuser():
 #Passwd (Changes password of an user)
 def cpasswd():
     arg1 = input("User: ")
-    if os.path.exists("users/"+arg1+".txt"):
+    if os.path.exists(arg1+".txt"):
         arg2 = input("New password: ")
         arg3 = input("Confirm password: ")
         if arg2 == arg3:
-            file = open("users/"+arg1+".txt", "w")
+            file = open(arg1+".txt", "w")
             file.write(arg2)
             cls()
             print("Password Changed!\nUsername: "+arg1+"\nPassword: "+arg2)
@@ -126,7 +126,7 @@ def cpasswd():
 #changename (changes name of an user)
 def cname():
     arg1 = input("Current username: ")
-    if os.path.exists("users/"+arg1+".txt"):
+    if os.path.exists(arg1+".txt"):
         arg2 = input("New name: ")
         arg3 = input("Confirm name: ")
         if arg2 == arg3:
@@ -161,7 +161,7 @@ def logoutf():
     arg2 = input("Is your login saved? [Yes / No]: ")
     if arg2 == "Yes":
         SaveLogin = "No"
-        os.remove("users/latest.txt")
+        os.remove("latest.txt")
         cls()
         print("Succesfully removed your saved login.")
         loggedin = False
@@ -181,7 +181,7 @@ def logoutf():
         exit()
     else:
         arg1 = input("Write your password confirm logout: ")
-        file = open("users/"+name+".txt", "r")
+        file = open(name+".txt", "r")
         if arg1 in file.read():
             cls()
             print("Succesfully logged out of your account.\n")
@@ -213,7 +213,7 @@ def gAI():
     g = True
     commandline = "No"
     #print("debug")
-    file = open("users/current.txt", "w")
+    file = open("current.txt", "w")
     file.write(name)
     file.close()
     mainf()
@@ -258,7 +258,7 @@ def cmdline():
 
 
 #ROOT User
-file = open("users/root.txt", "r")
+file = open("root.txt", "r")
 #if "root" in file.readlines():
     #print("ROOT user found")
 #else:
@@ -269,7 +269,7 @@ file = open("users/root.txt", "r")
 if "admin" in file.read():
     print("ROOT user found")
 else:
-    file = open("users/root.txt", "w")
+    file = open("root.txt", "w")
     file.write("admin\n")
     file.close()
 
@@ -278,7 +278,7 @@ else:
 if devmode == True:
     debug = input("debug: ")
     if debug == "dev":
-        file = open("users/adx.txt", "w")
+        file = open("adx.txt", "w")
         file.write("adx\nadxvps")
         file.close()
 
@@ -286,15 +286,15 @@ if devmode == True:
 
 #User management
 
-if os.path.exists("users/latest.txt"):
+if os.path.exists("latest.txt"):
         file.close()
-        file = open("users/latest.txt", "r")
+        file = open("latest.txt", "r")
         print("Logged in as "+file.read())
         loggedin = True
 else:
     name = input("Enter username:")
-    if os.path.exists("users/"+name+".txt"):
-        file = open("users/"+name+".txt", "r")
+    if os.path.exists(name+".txt"):
+        file = open(name+".txt", "r")
         file.close()
         usernamefound = True
         usernameid = name
@@ -307,7 +307,7 @@ else:
 
 if usernamefound == True:
     passwd = input("Enter password:")
-    file = open("users/"+name+".txt", "r")
+    file = open(name+".txt", "r")
     if passwd in file.read():
         cls()
         print("Logged in as " + name)
@@ -315,9 +315,9 @@ if usernamefound == True:
         SaveLogin = input("Do you want to save this login?\n [ Yes / No ]: ")
         if SaveLogin == "Yes":
             file.close()
-            file = open("users/latest.txt", "a")
+            file = open("latest.txt", "a")
             file.close
-            file = open("users/latest.txt", "w")
+            file = open("latest.txt", "w")
             file.write(name)
             
 
