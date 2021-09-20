@@ -121,7 +121,7 @@ def mainf():
                     audio = reco.listen(mic)
                     wname = reco.recognize_google(audio)
                     wname = wname.lower()
-                    file = open("users/current.txt", "w")
+                    file = open("current.txt", "w")
                     file.write(wname)
                     file.close()
                     print(wname+" Is now your new name")
@@ -134,7 +134,7 @@ def mainf():
                 speaker.runAndWait()
 
     def myname():
-        file = open("users/current.txt", "r")
+        file = open("current.txt", "r")
         wname = file.read()
         speaker.say("Your name is "+wname)
         speaker.runAndWait
